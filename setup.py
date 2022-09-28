@@ -3,7 +3,10 @@ from pip._internal.req import parse_requirements
 
 
 INSTALL_REQ_GEN = parse_requirements('requirements.txt', session=False)
-INSTALL_REQUIRES = [str(ir.requirement) for ir in INSTALL_REQ_GEN]
+try:
+    INSTALL_REQUIRES = [str(ir.req) for ir in INSTALL_REQ_GEN]
+except:
+    INSTALL_REQUIRES = [str(ir.requirement) for ir in INSTALL_REQ_GEN]
 
 setup(
       name="catfact",
